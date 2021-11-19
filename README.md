@@ -7,25 +7,24 @@ This GitHub Action copies a folder from the current repository to a location in 
     on: push
 
     jobs:
-      pull-request:
+      docs-pull-request:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
           uses: actions/checkout@v2
 
         - name: Create pull request
-          uses: c-commerce/action-pull-request-another-repo@v1.0.1
+          uses: c-commerce/action-pull-request-another-repo@v2.0.0
           env:
-            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+            PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           with:
             source_folder: 'source-folder'
-            destination_repo: 'user-name/repository-name'
-            destination_folder: 'folder-name'
-            destination_base_branch: 'branch-name'
-            destination_head_branch: 'branch-name'
-            user_email: 'user-name@paygo.com.br'
-            user_name: 'user-name'
-            pull_request_reviewers: 'reviewers'
+            destination_repo: 'c-commerce/repository-name'
+            destination_folder: 'docs/repository-name'
+            destination_base_branch: 'develop'
+            destination_head_branch: 'feat/docs-${{ github.event.repository.name }}-${{ github.head_ref }}'
+            user_email: 'tech@hello-charles.com'
+            user_name: 'c-commerce'
 
 ## Variables
 * source_folder: The folder to be moved. Uses the same syntax as the `cp` command. Incude the path for any files not in the repositories root directory.
