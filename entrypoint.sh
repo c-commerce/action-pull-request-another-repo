@@ -46,6 +46,9 @@ then
   MESSAGE="${INPUT_MESSAGE:-$FALLBACK_MESSAGE}"
   git commit --message "${MESSAGE}"
   echo "Pushing git commit"
+  
+  INPUT_PUSH_ARGS=$INPUT_PUSH_ARGS
+
   git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH "${INPUT_PUSH_ARGS[@]}"
   echo "Creating a pull request"
   gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
