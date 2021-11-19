@@ -25,6 +25,7 @@ This GitHub Action copies a folder from the current repository to a location in 
             destination_head_branch: 'feat/docs-${{ github.event.repository.name }}-${{ github.head_ref }}'
             user_email: 'tech@hello-charles.com'
             user_name: 'c-commerce'
+            message: 'Docs Update from ${{ github.event.repository.name }}'
 
 ## Variables
 * source_folder: The folder to be moved. Uses the same syntax as the `cp` command. Incude the path for any files not in the repositories root directory.
