@@ -18,6 +18,7 @@ This GitHub Action copies a folder from the current repository to a location in 
           env:
             PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           with:
+            push_args: '--force'
             source_folder: 'source-folder'
             destination_repo: 'c-commerce/repository-name'
             destination_folder: 'docs/repository-name'
