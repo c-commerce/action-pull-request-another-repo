@@ -26,6 +26,12 @@ inputs:
   pull_request_reviewers:
     description: 'Pull request reviewers users'
     required: false
+  push_args:
+    description: 'Add additional args in the push sequence'
+    required: false
+  message:
+    description: 'Set a custom commit message'
+    required: false 
 runs:
   using: 'docker'
   image: 'Dockerfile'
