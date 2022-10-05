@@ -34,7 +34,11 @@ git clone "https://$PERSONAL_ACCESS_TOKEN@github.com/$INPUT_DESTINATION_REPO.git
 echo "Copying contents to git repo"
 mkdir -p "$CLONE_DIR"/"$INPUT_DESTINATION_FOLDER"/
 
-rsync -av --progress "$INPUT_SOURCE_FOLDER" "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/" --exclude "$INPUT_EXCLUDE_PATTERN"
+
+excludes=( $(echo "$INPUT_EXCLUDE_PATTERN" | tr ";" "\n") )
+
+rsync -av --progress --exclude-from=<([ "${#excludes[@]}" -gt 0 ] && printf -- '- %s\n' "${excludes[@]}")  "$INPUT_SOURCE_FOLDER" "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/"  
+
 cd "$CLONE_DIR"
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
