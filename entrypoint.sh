@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2086
 
 set -e
 set -x
@@ -52,13 +53,16 @@ then
   git commit --message "${MESSAGE}"
   echo "Pushing git commit"
 
-  git push -u origin HEAD:"$INPUT_DESTINATION_HEAD_BRANCH" "$INPUT_PUSH_ARGS"
+  git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH "$INPUT_PUSH_ARGS"
+
   echo "Creating a pull request"
-  gh pr create -t "$INPUT_DESTINATION_HEAD_BRANCH" \
-               -b "$INPUT_DESTINATION_HEAD_BRANCH" \
-               -B "$INPUT_DESTINATION_BASE_BRANCH" \
-               -H "$INPUT_DESTINATION_HEAD_BRANCH" \
-                  "$PULL_REQUEST_REVIEWERS"
+
+  
+  gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
+               -b $INPUT_DESTINATION_HEAD_BRANCH \
+               -B $INPUT_DESTINATION_BASE_BRANCH \
+               -H $INPUT_DESTINATION_HEAD_BRANCH \
+                  $PULL_REQUEST_REVIEWERS
 else
   echo "No changes detected"
 fi
