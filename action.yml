@@ -10,6 +10,9 @@ inputs:
   destination_folder:
     description: 'Destination folder to push the origin folder'
     required: false
+  exclude_pattern:
+    description: 'takes an rsync exclude pattern'
+    required: false
   user_email:
     description: 'Email for the git commit'
     required: true
