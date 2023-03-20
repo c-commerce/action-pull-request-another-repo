@@ -35,6 +35,10 @@ inputs:
   message:
     description: 'Set a custom commit message'
     required: false 
+  auto_publish:
+    description: 'Instead of creating a pull-request, changes will be pushed to destination.'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

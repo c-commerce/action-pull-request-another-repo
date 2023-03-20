@@ -53,16 +53,20 @@ then
   git commit --message "${MESSAGE}"
   echo "Pushing git commit"
 
+  if $INPUT_AUTO_PUBLISH
+  then
+  git push -u origin $INPUT_DESTINATION_BASE_BRANCH "$INPUT_PUSH_ARGS"
+  echo "Pushing changes to base branch"
+
+  else
   git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH "$INPUT_PUSH_ARGS"
-
   echo "Creating a pull request"
-
-  
   gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
                -b $INPUT_DESTINATION_HEAD_BRANCH \
                -B $INPUT_DESTINATION_BASE_BRANCH \
                -H $INPUT_DESTINATION_HEAD_BRANCH \
                   $PULL_REQUEST_REVIEWERS
+  fi
 else
   echo "No changes detected"
 fi
