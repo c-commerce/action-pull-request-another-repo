@@ -72,7 +72,7 @@ then
 
   if $INPUT_AUTO_PUBLISH
   then
-  gh pr merge
+  gh pr merge --merge
   echo "Auto merging pull request"
   fi
 
