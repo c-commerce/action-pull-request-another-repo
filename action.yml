@@ -39,6 +39,10 @@ inputs:
     description: 'Instead of creating a pull-request, changes will be pushed to destination.'
     required: false
     default: false
+  enable_safe_directory:
+    description: 'Marks the temporary cloning directory as safe in git.'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

@@ -41,6 +41,14 @@ excludes=( $(echo "$INPUT_EXCLUDE_PATTERN" | tr ";" "\n") )
 rsync -av --progress --exclude-from=<([ "${#excludes[@]}" -gt 0 ] && printf -- '- %s\n' "${excludes[@]}")  "$INPUT_SOURCE_FOLDER" "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/"  
 
 cd "$CLONE_DIR"
+
+if $INPUT_ENABLE_SAFE_DIRECTORY
+then
+echo "Marking directory as a safe directory in git" 
+git config --global --add safe.directory "$CLONE_DIR"
+fi
+
+
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
 echo "Adding git commit"
