@@ -68,12 +68,11 @@ then
                -B $INPUT_DESTINATION_BASE_BRANCH \
                -H $INPUT_DESTINATION_HEAD_BRANCH \
                   $PULL_REQUEST_REVIEWERS
-  fi
 
   if $INPUT_AUTO_PUBLISH
   then
-  gh pr merge --merge
-  echo "Auto merging pull request"
+    gh pr merge --merge
+    echo "Auto merging pull request"
   fi
 
 else
